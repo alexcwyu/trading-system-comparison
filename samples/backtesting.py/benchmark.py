@@ -22,8 +22,17 @@ PROJECT_DIR = os.path.dirname(os.path.dirname(BASE_DIR))
 # Parse command-line arguments
 def parse_args():
     parser = argparse.ArgumentParser(description='Backtesting.py benchmark')
-    parser.add_argument('--data', type=str, default=os.path.join(PROJECT_DIR, 'data', 'BTCUSDT.csv'),
+    parser.add_argument('--data', type=str, 
+                        default=os.path.join(PROJECT_DIR, 'data', 'BTCUSDT_202401.csv'),
                         help='Path to the data file')
+    parser.add_argument('--start-date', type=str, default='2024-01-01',
+                        help='Start date for filtering data (YYYY-MM-DD)')
+    parser.add_argument('--end-date', type=str, default='2024-01-31',
+                        help='End date for filtering data (YYYY-MM-DD)')
+    parser.add_argument('--cash', type=float, default=10_000_000,
+                        help='Initial cash amount')
+    parser.add_argument('--commission', type=float, default=0.001,
+                        help='Commission rate (e.g., 0.001 for 0.1%)')
     return parser.parse_args()
 
 # Define our strategy
@@ -46,8 +55,8 @@ class SMACrossStrategy(Strategy):
         elif self.position and self.sma50 < self.sma500:
             self.position.close()
 
-def load_data(data_file):
-    """Load and prepare BTCUSDT data for backtesting with optimized performance"""
+def load_data(data_file, start_date, end_date):
+    """Load and prepare data for backtesting with optimized performance"""
     print(f"Loading data from {data_file}...")
     
     # Define needed columns to minimize memory usage
@@ -60,9 +69,10 @@ def load_data(data_file):
         parse_dates=['timestamp']
     )
     
-    # Filter for 2024 data using optimized timestamp comparison
-    start_date = pd.Timestamp('2024-01-01')
-    end_date = pd.Timestamp('2024-12-31')
+    # Filter for specified date range using optimized timestamp comparison
+    start_date = pd.Timestamp(start_date)
+    end_date = pd.Timestamp(end_date)
+    print(f"Filtering data from {start_date.date()} to {end_date.date()}")
     df = df[(df['timestamp'] >= start_date) & (df['timestamp'] <= end_date)]
     
     # Use optimized column renaming
@@ -77,11 +87,11 @@ def load_data(data_file):
     
     return df
 
-def run_benchmark(data_file):
+def run_benchmark(data_file, start_date, end_date, cash, commission):
     """Run the benchmark and return metrics"""
     # Load data
     t0 = time.time()
-    data = load_data(data_file)
+    data = load_data(data_file, start_date, end_date)
     t1 = time.time()
     print(f"Data loaded: {len(data)} bars in {t1-t0:.2f} seconds")
     
@@ -89,8 +99,8 @@ def run_benchmark(data_file):
     bt = Backtest(
         data,
         SMACrossStrategy,
-        cash=10_000_000,  # 10M USD
-        commission=0.001,  # 0.1% (10bps) commission
+        cash=cash,
+        commission=commission,
         trade_on_close=True,
         exclusive_orders=True
     )
@@ -107,8 +117,8 @@ def run_benchmark(data_file):
     # Print results
     print(f"\nBacktest completed in {run_time:.2f} seconds")
     print(f"\n--- Summary Statistics ---")
-    print(f"Initial Balance: $10,000,000")
-    print(f"Final Balance: ${results['Equity Final [$]']:.2f}")
+    print(f"Initial Balance: ${cash:,.2f}")
+    print(f"Final Balance: ${results['Equity Final [$]']:,.2f}")
     print(f"Return: {results['Return [%]']:.2f}%")
     print(f"Sharpe Ratio: {results['Sharpe Ratio']:.2f}")
     print(f"Max Drawdown: {results['Max. Drawdown [%]']:.2f}%")
@@ -139,5 +149,11 @@ def run_benchmark(data_file):
 if __name__ == "__main__":
     print("Starting Backtesting.py benchmark...")
     args = parse_args()
-    metrics = run_benchmark(args.data)
+    metrics = run_benchmark(
+        args.data, 
+        args.start_date, 
+        args.end_date,
+        args.cash,
+        args.commission
+    )
     print("\nBenchmark complete!") 

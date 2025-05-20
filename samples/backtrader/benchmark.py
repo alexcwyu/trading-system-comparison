@@ -7,7 +7,7 @@ SMA Crossover Strategy Benchmark for Backtrader
 - SMA(50) < SMA(500) for exit
 - Initial balance: 10M USD
 - Trading 1 BTC per signal
-- Timeframe: Jan 1, 2024 to Dec 31, 2024
+- Default timeframe: Jan 1, 2024 to Jan 31, 2024
 """
 
 import os
@@ -91,6 +91,9 @@ class SMACrossoverStrategy(bt.Strategy):
 
 def prepare_data(data_path, start_date, end_date):
     """Prepare BTC data for backtrader - optimized for speed"""
+    print(f"Loading data from {data_path}...")
+    print(f"Date range: {start_date.strftime('%Y-%m-%d')} to {end_date.strftime('%Y-%m-%d')}")
+    
     df = pd.read_csv(data_path)
     
     # Convert timestamp to datetime efficiently
@@ -132,10 +135,22 @@ def prepare_data(data_path, start_date, end_date):
     return df
 
 
+def parse_date(date_str):
+    """Parse date string in YYYY-MM-DD format"""
+    try:
+        return datetime.datetime.strptime(date_str, '%Y-%m-%d')
+    except ValueError:
+        raise argparse.ArgumentTypeError(f"Invalid date format: {date_str}. Use YYYY-MM-DD")
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Run SMA Crossover Strategy Benchmark')
-    parser.add_argument('--data', type=str, default="../../data/BTCUSDT.csv", 
+    parser.add_argument('--data', type=str, default="../../data/BTCUSDT_202401.csv", 
                         help='Path to BTCUSDT data CSV file')
+    parser.add_argument('--start-date', type=parse_date, default='2024-01-01',
+                        help='Start date (YYYY-MM-DD format)')
+    parser.add_argument('--end-date', type=parse_date, default='2024-01-31',
+                        help='End date (YYYY-MM-DD format)')
     parser.add_argument('--capital', type=float, default=10_000_000, 
                         help='Initial capital in USD')
     parser.add_argument('--commission', type=float, default=0.001, 
@@ -148,6 +163,12 @@ if __name__ == "__main__":
                         help='Debug CSV structure')
     
     args = parser.parse_args()
+    
+    # Handle default dates if string values are provided
+    if isinstance(args.start_date, str):
+        args.start_date = parse_date(args.start_date)
+    if isinstance(args.end_date, str):
+        args.end_date = parse_date(args.end_date)
     
     if not os.path.exists(args.data):
         print(f"Error: Data file not found at {args.data}")
@@ -175,13 +196,9 @@ if __name__ == "__main__":
     cerebro.broker.setcommission(commission=args.commission)
     cerebro.addsizer(bt.sizers.FixedSize, stake=1)
     
-    # Prepare data
-    start_date = datetime.datetime(2024, 1, 1)
-    end_date = datetime.datetime(2024, 12, 31)
-    
     print(f"Loading data from {args.data}...")
     start_data_time = time.time()
-    df = prepare_data(args.data, start_date, end_date)
+    df = prepare_data(args.data, args.start_date, args.end_date)
     end_data_time = time.time()
     print(f"Data loaded: {len(df)} records in {end_data_time - start_data_time:.2f} seconds")
     
@@ -245,18 +262,27 @@ if __name__ == "__main__":
         
         # Total Trades
         try:
-            total = getattr(trades, 'total', 0)
-            won = getattr(trades, 'won', 0)
+            total = getattr(getattr(trades, 'total', None), 'total', 0)
+            won = getattr(getattr(trades, 'won', None), 'total', 0)
             print(f"Total Trades: {total}")
+            print(f"Won/Lost: {won}/{total - won}")
             if total > 0:
-                print(f"Win Rate: {(won / total) * 100:.2f}%")
+                print(f"Win Rate: {won / total * 100:.2f}%")
         except:
             pass
-            
+        
     except Exception as e:
-        if args.verbose:
-            print(f"Error calculating metrics: {e}")
+        print(f"Error calculating metrics: {e}")
     
+    # Plot if requested
     if args.plot:
-        plt.rcParams['figure.figsize'] = [14, 8]
-        cerebro.plot(style='candlestick') 
+        plt.figure(figsize=(12, 8))
+        plt.rcParams['figure.facecolor'] = 'white'
+        
+        # Add minimal observers for plotting
+        cerebro.addobserver(bt.observers.BuySell)
+        cerebro.addobserver(bt.observers.Value)
+        
+        print("Generating plot...")
+        cerebro.plot(style='candle', barup='green', bardown='red', 
+                    plotdist=0.1, grid=True, volume=False) 
