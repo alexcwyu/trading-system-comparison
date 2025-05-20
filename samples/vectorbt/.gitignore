@@ -1,0 +1,32 @@
+# Virtual environment
+.venv/
+venv/
+
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Test data and outputs
+*.png
+*.jpg
+*.html
+*.log
+
+# Environment variables
+.env
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# VectorBT specific
+.vectorbt/ 

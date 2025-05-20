@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# Script to run the VectorBT benchmark with UV
+echo "Running VectorBT benchmark..."
+cd "$(dirname "$0")"
+
+# Default parameters
+DATA_FILE="../../data/BTCUSDT_202401.csv"
+START_DATE="2024-01-01"
+END_DATE="2024-01-31"
+
+# Parse command line arguments
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --data)
+            DATA_FILE="$2"
+            shift 2
+            ;;
+        --start-date)
+            START_DATE="$2"
+            shift 2
+            ;;
+        --end-date)
+            END_DATE="$2"
+            shift 2
+            ;;
+        *)
+            # Pass any other arguments directly to the script
+            EXTRA_ARGS="${EXTRA_ARGS} $1"
+            shift
+            ;;
+    esac
+done
+
+# Print configuration
+echo "Data file: ${DATA_FILE}"
+echo "Date range: ${START_DATE} to ${END_DATE}"
+echo ""
+
+# Check if virtual environment exists, if not, create it
+if [ ! -d ".venv" ]; then
+    echo "Creating virtual environment with UV..."
+    uv venv
+    echo "Installing dependencies..."
+    uv pip install vectorbt pandas numpy matplotlib numba scipy
+fi
+
+# Make benchmark.py executable
+chmod +x benchmark.py
+
+# Run benchmark
+echo "Starting benchmark..."
+uv run benchmark.py --data "${DATA_FILE}" --start-date "${START_DATE}" --end-date "${END_DATE}" ${EXTRA_ARGS} 
