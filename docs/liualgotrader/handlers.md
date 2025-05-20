@@ -30,7 +30,6 @@ graph TD
     
     HE --> HS
     HO --> HS
-</graph>
 ```
 
 ## Handler Interfaces and Responsibilities

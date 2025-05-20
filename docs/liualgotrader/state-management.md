@@ -50,7 +50,6 @@ graph TD
     STOP --> TRADE
     TARGET --> TRADE
     TRADE --> PORTFOLIO
-</graph>
 ```
 
 ## State Components
@@ -132,7 +131,6 @@ sequenceDiagram
     App->>DB: Create AlgoRun entries
     App->>Mem: Initialize global variables
     App->>Mem: Initialize queue mapping
-</sequence>
 ```
 
 1. The trader application generates a new unique batch_id

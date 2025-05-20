@@ -41,7 +41,6 @@ graph TD
     DB --> AN
     AN --> ML
     MN --> DB
-</graph>
 ```
 
 LiuAlgoTrader implements a producer-consumer architecture where:

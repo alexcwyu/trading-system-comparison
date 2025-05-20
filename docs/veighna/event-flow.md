@@ -66,34 +66,27 @@ Handlers ← EventEngine ← OrderEvent ← Gateway ← Exchange Response
 
 ## Detailed Event Flow Diagram
 
-```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│  Exchange   │     │    User     │     │   Timer     │
-└──────┬──────┘     └──────┬──────┘     └──────┬──────┘
-       │                   │                   │
-       ▼                   ▼                   ▼
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   Gateway   │     │     GUI     │     │ TimerEngine │
-└──────┬──────┘     └──────┬──────┘     └──────┬──────┘
-       │                   │                   │
-       ▼                   ▼                   ▼
-┌─────────────────────────────────────────────────────┐
-│                    EventEngine                       │
-└─────────────────────┬───────────────────────────────┘
-                      │
-       ┌──────────────┼──────────────┐
-       │              │              │
-       ▼              ▼              ▼
-┌─────────────┐ ┌─────────────┐ ┌─────────────┐
-│  MainEngine  │ │ Application │ │     GUI     │
-└──────┬──────┘ └──────┬──────┘ └──────┬──────┘
-       │               │               │
-       └───────┬───────┴───────┬───────┘
-               │               │
-               ▼               ▼
-        ┌─────────────┐ ┌─────────────┐
-        │  Strategy   │ │   Database  │
-        └─────────────┘ └─────────────┘
+```mermaid
+graph TD
+    Exchange[Exchange] --> Gateway[Gateway]
+    User[User] --> GUI1[GUI]
+    Timer[Timer] --> TimerEngine[TimerEngine]
+    
+    Gateway --> EventEngine[EventEngine]
+    GUI1 --> EventEngine
+    TimerEngine --> EventEngine
+    
+    EventEngine --> MainEngine[MainEngine]
+    EventEngine --> Application[Application]
+    EventEngine --> GUI2[GUI]
+    
+    MainEngine --> Strategy[Strategy]
+    Application --> Strategy
+    GUI2 --> Strategy
+    
+    MainEngine --> Database[Database]
+    Application --> Database
+    GUI2 --> Database
 ```
 
 ## Event Engine Implementation

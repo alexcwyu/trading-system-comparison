@@ -200,6 +200,23 @@ Transitions between these states are triggered by order events:
 - `PARTTRADED` → `CANCELLED`: Partially filled order is canceled
 - `SUBMITTING` → `REJECTED`: Order is rejected by the exchange
 
+### Order State Diagram
+
+```mermaid
+stateDiagram
+    [*] --> SUBMITTING
+    SUBMITTING --> NOTTRADED: Order Accepted
+    SUBMITTING --> REJECTED: Order Rejected
+    NOTTRADED --> PARTTRADED: Partial Fill
+    NOTTRADED --> CANCELLED: Cancel Request
+    NOTTRADED --> ALLTRADED: Complete Fill
+    PARTTRADED --> ALLTRADED: Remaining Fill
+    PARTTRADED --> CANCELLED: Cancel Request
+    ALLTRADED --> [*]
+    CANCELLED --> [*]
+    REJECTED --> [*]
+```
+
 ### Position State Transitions
 
 Position state changes are triggered by trade events:

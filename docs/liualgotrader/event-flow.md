@@ -34,7 +34,6 @@ graph LR
     S1 -->|"Order"| T1[Trade Execution]
     S2 -->|"Order"| T2[Trade Execution]
     S3 -->|"Order"| T3[Trade Execution]
-</graph>
 ```
 
 ## Event Types
@@ -70,7 +69,6 @@ sequenceDiagram
     PR->>PR: Map symbols to consumer queues
     PR->>+DB: Record trending symbols
     PR->>PR: Subscribe to data for symbols
-</sequence>
 ```
 
 1. The trader application starts the scanner, producer, and consumer processes
@@ -111,7 +109,6 @@ sequenceDiagram
         C-->>S: Call buy/sell callback
         C->>DB: Update trade record
     end
-</sequence>
 ```
 
 During normal operation:
@@ -140,7 +137,6 @@ sequenceDiagram
         PR->>PR: Subscribe to data feeds
         PR->>C: New symbols available notification
     end
-</sequence>
 ```
 
 Scanners run periodically according to their configuration:
@@ -183,7 +179,6 @@ sequenceDiagram
         C->>C: Cancel pending order if needed
         C->>S: Notify strategy (optional)
     end
-</sequence>
 ```
 
 LiuAlgoTrader implements robust error handling:
@@ -213,7 +208,6 @@ sequenceDiagram
     T->>T: Run end-of-day analysis
     T->>DB: Store gain/loss calculations
     T->>DB: Store trade analysis
-</sequence>
 ```
 
 At the end of the trading day:
