@@ -56,7 +56,6 @@ graph TD
     SCN --> SM
     MDL --> SM
     MP --> SM
-</graph>
 ```
 
 ## Key Components and Their Relationships

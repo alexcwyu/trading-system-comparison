@@ -5,7 +5,7 @@ This documentation provides comprehensive information about the various trading 
 
 ## Trading System Comparison
 
-| System | GitHub URL | Docs URL | Repository Stats | Language | Type | Key Features | Best For | Market Support | Execution Venues | Live/Paper Trading | Order Types | Order Book Sim | Key Dependencies |
+| System | GitHub URL | Docs URL | <div style="width:280px">Repository Stats </div>| Language | Type | Key Features | Best For | Market Support | Execution Venues | Live/Paper Trading | Order Types | Order Book Sim | Key Dependencies |
 |--------|------------|----------|------------------|----------|------|-------------|----------|----------------|------------------|-------------------|-------------|----------------|------------------|
 | [LEAN](./docs/lean/README.md) | [GitHub](https://github.com/QuantConnect/Lean) | [Docs](https://www.lean.io/docs/v2/lean-cli) | ![LEAN Stats](https://github-readme-stats.vercel.app/api/pin/?username=QuantConnect&repo=Lean) | C#/Python | Event-driven | Modular architecture, multi-asset, institutional-grade | Production algorithmic trading, cloud deployment, research | All markets | Interactive Brokers, OANDA, Binance, Coinbase, multiple others | Yes/Yes | Comprehensive set of order types | Yes (advanced) | .NET Core, Python (optional) |
 | [Barter](./docs/barter/README.md) | [GitHub](https://github.com/barter-rs/barter-rs) | [Docs](https://docs.rs/barter/latest/barter/) | ![Barter Stats](https://github-readme-stats.vercel.app/api/pin/?username=barter-rs&repo=barter-rs) | Rust | Event-driven | Fast, robust, strongly typed, multithreaded | HFT, low-latency applications | Crypto, FX, Equities | Binance, FTX, custom | Yes/Yes | Market, Limit, Stop | Yes | Rust ecosystem |
