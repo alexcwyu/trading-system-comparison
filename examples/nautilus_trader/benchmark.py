@@ -3,18 +3,9 @@ import time
 import pandas as pd
 from pathlib import Path
 
-from nautilus_trader.simulator import SimulationEngine
-from nautilus_trader.backtest import BacktestRun
-from nautilus_trader.model.caches import InstrumentCache
-from nautilus_trader.model.instruments import Instrument
-from nautilus_trader.model.data import Bar
-from nautilus_trader.model.identifiers import InstrumentId
-from nautilus_trader.model.objects import Price, Quantity, Side
-from nautilus_trader.account import Account
-from nautilus_trader.model.enums import AccountType, AccountStatus
-from nautilus_trader.execution.orders import MarketOrder
-from nautilus_trader.core.datetime import dt_to_unix_nanos
-from nautilus_trader.core.config import config_from_dict
+from nautilus_trader.model.data import Bar, BarType
+from nautilus_trader.model.objects import Quantity
+from nautilus_trader.test_kit.providers import TestInstrumentProvider
 
 class SMACrossoverStrategy:
     def __init__(self, instrument, qty, commission_bps):
@@ -38,12 +29,12 @@ class SMACrossoverStrategy:
                 # Entry condition
                 if self.sma_fast[-1] > self.sma_slow[-1]:
                     self.position = 1
-                    self.trades.append((bar.timestamp, price, "BUY"))
+                    self.trades.append((bar.ts_event, price, "BUY"))
             elif self.position == 1:
                 # Exit condition
                 if self.sma_fast[-1] < self.sma_slow[-1]:
                     self.position = 0
-                    self.trades.append((bar.timestamp, price, "SELL"))
+                    self.trades.append((bar.ts_event, price, "SELL"))
 
 def load_data(data_path, start_date, end_date):
     df = pd.read_csv(data_path, parse_dates=['timestamp'])
@@ -55,38 +46,26 @@ def main(args):
     # Prepare data
     df = load_data(args.data, args.start_date, args.end_date)
 
-    # Setup initial account
-    account = Account(
-        account_id="TEST_ACC",
-        account_type=AccountType.CASH,
-        status=AccountStatus.ACTIVE,
-        currency="USD",
-        balance=10_000_000,
-    )
-
-    # Setup instrument
-    instrument_id = InstrumentId("BTCUSD", "BINANCE")
-    instrument = Instrument(
-        instrument_id=instrument_id,
-        base="BTC",
-        quote="USD",
-        lot_size=1,
-        tick_size=0.01,
-    )
+    # This existing benchmark measures Nautilus bar model + strategy dispatch;
+    # it does not submit orders through BacktestEngine or emulate brokerage fills.
+    instrument = TestInstrumentProvider.btcusdt_binance()
+    bar_type = BarType.from_str(f"{instrument.id}-1-MINUTE-LAST-EXTERNAL")
 
     # Create strategy instance
     strat = SMACrossoverStrategy(instrument, qty=1, commission_bps=0.1)
 
     # Simulate bars through the strategy
     for _, row in df.iterrows():
+        timestamp = pd.Timestamp(row['timestamp'])
         bar = Bar(
-            instrument_id=instrument_id,
-            timestamp=dt_to_unix_nanos(row['timestamp']),
-            open=Price(float(row['open']), "USD"),
-            high=Price(float(row['high']), "USD"),
-            low=Price(float(row['low']), "USD"),
-            close=Price(float(row['close']), "USD"),
-            volume=Quantity(float(row['volume']), "BTC"),
+            bar_type=bar_type,
+            open=instrument.make_price(row['open']),
+            high=instrument.make_price(row['high']),
+            low=instrument.make_price(row['low']),
+            close=instrument.make_price(row['close']),
+            volume=instrument.make_qty(row['volume']),
+            ts_event=timestamp.value,
+            ts_init=timestamp.value,
         )
         strat.on_bar(bar)
 
@@ -101,7 +80,7 @@ def main(args):
             pos = 1
         elif t[2] == "SELL" and last_entry is not None:
             profit = (t[1] - last_entry) * 1
-            cost = (last_entry + t[1]) * strat.commission_bps / 1000
+            cost = (last_entry + t[1]) * strat.commission_bps / 10000
             pnl += profit - cost
             pos = 0
             last_entry = None

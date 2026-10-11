@@ -154,7 +154,7 @@ if __name__ == "__main__":
     parser.add_argument('--capital', type=float, default=10_000_000, 
                         help='Initial capital in USD')
     parser.add_argument('--commission', type=float, default=0.001, 
-                        help='Commission rate (default: 0.1%)')
+                        help='Commission rate (default: 0.1%%)')
     parser.add_argument('--plot', action='store_true', 
                         help='Plot results (warning: can be slow with large datasets)')
     parser.add_argument('--verbose', action='store_true',

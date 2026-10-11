@@ -1,0 +1,574 @@
+{
+  "repository": "system-comparison",
+  "source_commit_before_documentation_commit": "964081af8b217cd680d94bccae191b0ea0b4e062",
+  "recorded_on": "2026-10-12",
+  "records": [
+    {
+      "command": [
+        "uv",
+        "sync",
+        "--python",
+        "3.15"
+      ],
+      "exit_code": 0,
+      "seconds": 1.84,
+      "cwd": "<workspace>/system-comparison/examples/backtesting.py",
+      "check": "backtesting-315-baseline",
+      "original_log": "system-comparison-backtesting-315-baseline.log",
+      "log_sha256": "07d5e95d8f26495f2330a32cf51ea6f1aea4a30e5816aabd556274484aa277ca",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "sync",
+        "--upgrade",
+        "--python",
+        "3.15"
+      ],
+      "exit_code": 0,
+      "seconds": 0.85,
+      "cwd": "<workspace>/system-comparison/examples/backtesting.py",
+      "check": "backtesting-py-315-latest-sync",
+      "original_log": "system-comparison-backtesting-py-315-latest-sync.log",
+      "log_sha256": "661e8e8fe899aa18bf8bb59c1a893d5ef54e4f86b89abdc6004b5515e6b6cf8c",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "examples/backtesting.py",
+        "python",
+        "examples/backtesting.py/benchmark.py",
+        "--data",
+        "data/BTCUSDT_202401.csv",
+        "--start-date",
+        "2024-01-01",
+        "--end-date",
+        "2024-01-02"
+      ],
+      "exit_code": 1,
+      "seconds": 1.56,
+      "cwd": "<workspace>/system-comparison",
+      "check": "backtesting-py-existing-example-smoke",
+      "original_log": "system-comparison-backtesting-py-existing-example-smoke.log",
+      "log_sha256": "f12e4f9c3e8c5f2803f2f67ebe32c9bffdaecf27c951ea9d60ff3f722e7b1df5",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "examples/backtesting.py",
+        "python",
+        "examples/backtesting.py/benchmark.py",
+        "--data",
+        "data/BTCUSDT_202401.csv",
+        "--start-date",
+        "2024-01-01",
+        "--end-date",
+        "2024-01-02"
+      ],
+      "exit_code": 0,
+      "seconds": 2.54,
+      "cwd": "<workspace>/system-comparison",
+      "check": "backtesting-py-fixed-example-smoke",
+      "original_log": "system-comparison-backtesting-py-fixed-example-smoke.log",
+      "log_sha256": "3e6d9c751c4341ec31cc6350edfe0c764268511003babd055f209679d8a5a548",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "examples/backtesting.py",
+        "python",
+        "examples/backtesting.py/benchmark.py",
+        "--help"
+      ],
+      "exit_code": 1,
+      "seconds": 5.43,
+      "cwd": "<workspace>/system-comparison",
+      "check": "backtesting-py-import-help",
+      "original_log": "system-comparison-backtesting-py-import-help.log",
+      "log_sha256": "9f553d4d3b074665dcff51e9908e569b93da83fdf9c8aa3a766318fbd34aa389",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "sync",
+        "--upgrade",
+        "--python",
+        "3.15"
+      ],
+      "exit_code": 0,
+      "seconds": 0.65,
+      "cwd": "<workspace>/system-comparison/examples/backtrader",
+      "check": "backtrader-315-latest-sync",
+      "original_log": "system-comparison-backtrader-315-latest-sync.log",
+      "log_sha256": "a445f865d12e6736ea81ef867c4d8cca6ffcd720a3d6b18860fb266822723a8b",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "examples/backtrader",
+        "python",
+        "examples/backtrader/benchmark.py",
+        "--data",
+        "data/BTCUSDT_202401.csv",
+        "--start-date",
+        "2024-01-01",
+        "--end-date",
+        "2024-01-02"
+      ],
+      "exit_code": 1,
+      "seconds": 2.2,
+      "cwd": "<workspace>/system-comparison",
+      "check": "backtrader-existing-example-smoke",
+      "original_log": "system-comparison-backtrader-existing-example-smoke.log",
+      "log_sha256": "25bc38a54147972d41975c3e0ddfa1bd88f46dbe808b37e51423a82c5b84ba95",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "examples/backtrader",
+        "python",
+        "examples/backtrader/benchmark.py",
+        "--data",
+        "data/BTCUSDT_202401.csv",
+        "--start-date",
+        "2024-01-01",
+        "--end-date",
+        "2024-01-02"
+      ],
+      "exit_code": 0,
+      "seconds": 2.73,
+      "cwd": "<workspace>/system-comparison",
+      "check": "backtrader-fixed-example-smoke",
+      "original_log": "system-comparison-backtrader-fixed-example-smoke.log",
+      "log_sha256": "97861529ac6ad1d04b1f2c9d31d7db92170a33a6d7bd9a54f5964bb23f8cc6c6",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "examples/backtrader",
+        "python",
+        "examples/backtrader/benchmark.py",
+        "--help"
+      ],
+      "exit_code": 1,
+      "seconds": 7.18,
+      "cwd": "<workspace>/system-comparison",
+      "check": "backtrader-import-help",
+      "original_log": "system-comparison-backtrader-import-help.log",
+      "log_sha256": "247ba3ac5803be5086b56f5035820302f8aadf463c8be5210ac9d29bb5d9c5d7",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "sync",
+        "--upgrade",
+        "--python",
+        "3.15"
+      ],
+      "exit_code": 1,
+      "seconds": 2.88,
+      "cwd": "<workspace>/system-comparison/examples/basana",
+      "check": "basana-315-latest-sync",
+      "original_log": "system-comparison-basana-315-latest-sync.log",
+      "log_sha256": "92da472dc17d26b9da0960afe5b5480fc53bf8d050061103291329192aedd5b7",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "examples/basana",
+        "python",
+        "examples/basana/benchmark.py",
+        "--data",
+        "data/BTCUSDT_202401.csv",
+        "--start-date",
+        "2024-01-01",
+        "--end-date",
+        "2024-01-02"
+      ],
+      "exit_code": 0,
+      "seconds": 1.79,
+      "cwd": "<workspace>/system-comparison",
+      "check": "basana-current-bar-smoke",
+      "original_log": "system-comparison-basana-current-bar-smoke.log",
+      "log_sha256": "d0b30e1f86f33e50f68437cf2c4421d7fd24a822f04bc2d6ae688b5ab8b14727",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "examples/basana",
+        "python",
+        "examples/basana/benchmark.py",
+        "--data",
+        "data/BTCUSDT_202401.csv",
+        "--start-date",
+        "2024-01-01",
+        "--end-date",
+        "2024-01-02"
+      ],
+      "exit_code": 1,
+      "seconds": 2.97,
+      "cwd": "<workspace>/system-comparison",
+      "check": "basana-existing-example-smoke",
+      "original_log": "system-comparison-basana-existing-example-smoke.log",
+      "log_sha256": "559dd2c3a4e888306c8c284b1c6e0f0bdf0ebdfb50adbe371f61151643285557",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "examples/basana",
+        "python",
+        "examples/basana/benchmark.py",
+        "--data",
+        "data/BTCUSDT_202401.csv",
+        "--start-date",
+        "2024-01-01",
+        "--end-date",
+        "2024-01-02"
+      ],
+      "exit_code": 1,
+      "seconds": 4.9,
+      "cwd": "<workspace>/system-comparison",
+      "check": "basana-fixed-example-smoke",
+      "original_log": "system-comparison-basana-fixed-example-smoke.log",
+      "log_sha256": "24c637c836cffb1651971bce5740008c547958f7840ff25b2c1e928e937e1b0b",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "examples/basana",
+        "python",
+        "examples/basana/benchmark.py",
+        "--help"
+      ],
+      "exit_code": 1,
+      "seconds": 3.28,
+      "cwd": "<workspace>/system-comparison",
+      "check": "basana-import-help",
+      "original_log": "system-comparison-basana-import-help.log",
+      "log_sha256": "3afd01ce1c02cf8b12ef1a813e9aff5021ec864007af3a0b3e3197ae3f5fd0bb",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "sync",
+        "--upgrade",
+        "--python",
+        "3.14"
+      ],
+      "exit_code": 0,
+      "seconds": 0.52,
+      "cwd": "<workspace>/system-comparison/examples/basana",
+      "check": "basana314-latest-sync",
+      "original_log": "system-comparison-basana314-latest-sync.log",
+      "log_sha256": "3e905ddc3df8b52a878ffaa9688f64dfd61aafca40a2e590f726f1be8575c861",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--no-sync",
+        "python",
+        "-m",
+        "compileall",
+        "-q",
+        "scripts/extract_data.py",
+        "examples/backtesting.py/benchmark.py",
+        "examples/backtrader/benchmark.py",
+        "examples/basana/benchmark.py",
+        "examples/nautilus_trader/benchmark.py",
+        "examples/vectorbt/benchmark.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.07,
+      "cwd": "<workspace>/system-comparison",
+      "check": "compile-owned-python",
+      "original_log": "system-comparison-compile-owned-python.log",
+      "log_sha256": "03e198e30a1847e363aba7048864ef48a8641180951b8f56f9f1270324a0de11",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "sync",
+        "--python",
+        "3.15"
+      ],
+      "exit_code": 1,
+      "seconds": 0.41,
+      "cwd": "<workspace>/system-comparison/examples/nautilus_trader",
+      "check": "nautilus-315-baseline",
+      "original_log": "system-comparison-nautilus-315-baseline.log",
+      "log_sha256": "f9fe71f9e73fd59a7f3aea6165c52ae79d7ccbb022be778fb9ba1be7d55045a0",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "examples/nautilus_trader",
+        "python",
+        "examples/nautilus_trader/benchmark.py",
+        "--help"
+      ],
+      "exit_code": 0,
+      "seconds": 3.85,
+      "cwd": "<workspace>/system-comparison",
+      "check": "nautilus-import-help-fixed",
+      "original_log": "system-comparison-nautilus-import-help-fixed.log",
+      "log_sha256": "8b18299d54c9f20d0728a4ab852fe0773ec0a19c9b64c813f64953703f6ed4b2",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "sync",
+        "--upgrade",
+        "--python",
+        "3.14"
+      ],
+      "exit_code": 0,
+      "seconds": 0.56,
+      "cwd": "<workspace>/system-comparison/examples/nautilus_trader",
+      "check": "nautilus314-latest-sync",
+      "original_log": "system-comparison-nautilus314-latest-sync.log",
+      "log_sha256": "26108f57f0c1799248e2538c08e5b9039fa4f65e70b25eb48f252b61f04d55c0",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "sync",
+        "--upgrade",
+        "--python",
+        "3.15"
+      ],
+      "exit_code": 1,
+      "seconds": 4.77,
+      "cwd": "<workspace>/system-comparison/examples/nautilus_trader",
+      "check": "nautilus_trader-315-latest-sync",
+      "original_log": "system-comparison-nautilus_trader-315-latest-sync.log",
+      "log_sha256": "b59a5a2a11e22e7295dd66f417be23798633cc3f99106aec9095610fe949e815",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "examples/nautilus_trader",
+        "python",
+        "examples/nautilus_trader/benchmark.py",
+        "--data",
+        "data/BTCUSDT_202401.csv",
+        "--start-date",
+        "2024-01-01",
+        "--end-date",
+        "2024-01-02"
+      ],
+      "exit_code": 0,
+      "seconds": 4.3,
+      "cwd": "<workspace>/system-comparison",
+      "check": "nautilus_trader-existing-example-smoke",
+      "original_log": "system-comparison-nautilus_trader-existing-example-smoke.log",
+      "log_sha256": "f72306b4ad56e4a33b4ead53c61c978c7c3b28c7d8ec71d68cc1bf5e898d6759",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "examples/nautilus_trader",
+        "python",
+        "examples/nautilus_trader/benchmark.py",
+        "--data",
+        "data/BTCUSDT_202401.csv",
+        "--start-date",
+        "2024-01-01",
+        "--end-date",
+        "2024-01-02"
+      ],
+      "exit_code": 0,
+      "seconds": 4.06,
+      "cwd": "<workspace>/system-comparison",
+      "check": "nautilus_trader-fixed-example-smoke",
+      "original_log": "system-comparison-nautilus_trader-fixed-example-smoke.log",
+      "log_sha256": "d52f02e30503ab245a6d3a3d906fcead859a64a4081d3ce96cde6ebc132f2336",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "examples/nautilus_trader",
+        "python",
+        "examples/nautilus_trader/benchmark.py",
+        "--help"
+      ],
+      "exit_code": 1,
+      "seconds": 5.24,
+      "cwd": "<workspace>/system-comparison",
+      "check": "nautilus_trader-import-help",
+      "original_log": "system-comparison-nautilus_trader-import-help.log",
+      "log_sha256": "270436fe60b5520dad497ae24d5678776408ab03a0210abdd3698881ff7b47ff",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "sync",
+        "--upgrade",
+        "--python",
+        "3.15"
+      ],
+      "exit_code": 0,
+      "seconds": 0.35,
+      "cwd": "<workspace>/system-comparison",
+      "check": "system-comparison-315-latest-sync",
+      "original_log": "system-comparison-system-comparison-315-latest-sync.log",
+      "log_sha256": "f3713642de2469d19f5bfef43c14526dad4578a2128f309631199319c2a34a41",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "sync",
+        "--python",
+        "3.15"
+      ],
+      "exit_code": 0,
+      "seconds": 21.84,
+      "cwd": "<workspace>/system-comparison/examples/vectorbt",
+      "check": "vectorbt-315-baseline",
+      "original_log": "system-comparison-vectorbt-315-baseline.log",
+      "log_sha256": "cecea99a5f3b7f7291ca8ea9a8f407ad0e9838e2195ecb168e69e67992c5fdcc",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "sync",
+        "--upgrade",
+        "--python",
+        "3.15"
+      ],
+      "exit_code": 0,
+      "seconds": 0.38,
+      "cwd": "<workspace>/system-comparison/examples/vectorbt",
+      "check": "vectorbt-315-latest-sync",
+      "original_log": "system-comparison-vectorbt-315-latest-sync.log",
+      "log_sha256": "d82da14f08419b9bad007fd1e0801cf28bbb85538a464d27356bc188bbf92ae4",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "examples/vectorbt",
+        "python",
+        "examples/vectorbt/benchmark.py",
+        "--data",
+        "data/BTCUSDT_202401.csv",
+        "--start-date",
+        "2024-01-01",
+        "--end-date",
+        "2024-01-02"
+      ],
+      "exit_code": 1,
+      "seconds": 7.59,
+      "cwd": "<workspace>/system-comparison",
+      "check": "vectorbt-existing-example-smoke",
+      "original_log": "system-comparison-vectorbt-existing-example-smoke.log",
+      "log_sha256": "28b4e1275ab5ec7cf69c361d2ce79196e23e393ddc456f04d4bad2116ec526ca",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "examples/vectorbt",
+        "python",
+        "examples/vectorbt/benchmark.py",
+        "--data",
+        "data/BTCUSDT_202401.csv",
+        "--start-date",
+        "2024-01-01",
+        "--end-date",
+        "2024-01-02"
+      ],
+      "exit_code": 0,
+      "seconds": 78.49,
+      "cwd": "<workspace>/system-comparison",
+      "check": "vectorbt-fixed-example-smoke",
+      "original_log": "system-comparison-vectorbt-fixed-example-smoke.log",
+      "log_sha256": "991530c7f91e37376a22a796d364c63950b237c71c30838b9792ff6cc39a29b3",
+      "outcomes": []
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "examples/vectorbt",
+        "python",
+        "examples/vectorbt/benchmark.py",
+        "--help"
+      ],
+      "exit_code": 1,
+      "seconds": 21.7,
+      "cwd": "<workspace>/system-comparison",
+      "check": "vectorbt-import-help",
+      "original_log": "system-comparison-vectorbt-import-help.log",
+      "log_sha256": "e4a0c393ce2eed84e67830cd386d7a05ae49b7ec90bfacd9d31b3ccd3888f512",
+      "outcomes": []
+    }
+  ],
+  "summary": {
+    "repo": "system-comparison",
+    "branch": "feature/ayu_develop",
+    "status": "All six owned Python source files compile and all five existing framework benchmark scripts execute on the supplied common historical interval.",
+    "runtime": "Root/Backtesting/Backtrader/VectorBT Python3.15.0; Basana/Nautilus Python3.14.8",
+    "tests": "No supplied pytest test cases. Existing Backtesting.py, Backtrader, Basana, Nautilus and VectorBT benchmark smoke runs passed on the common 2024-01-01 to2024-01-02 sample.",
+    "notes": "Basana\u2019s latest pycares source fails against this macOS SDK on3.15; current Nautilus native distribution requires3.14. The Nautilus script performs a manual SMA simulation using Nautilus data models; it does not run a full BacktestEngine. Latest compatible libraries are independently locked per framework. Existing bar API, numerical indexing, CLI percent escaping and basis-point cost conversion issues were fixed."
+  },
+  "note": "Full raw logs are retained in the workspace maintenance evidence, not distributed here. Hashes identify those original logs. A successful build or selected test subset does not imply a full test-suite pass. Commands containing <workspace> describe the original execution environment."
+}

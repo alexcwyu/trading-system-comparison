@@ -48,7 +48,7 @@ def parse_args():
     parser.add_argument('--cash', type=float, default=10_000_000,
                         help='Initial cash amount')
     parser.add_argument('--commission', type=float, default=0.001,
-                        help='Commission rate (e.g., 0.001 for 0.1%)')
+                        help='Commission rate (e.g., 0.001 for 0.1%%)')
     parser.add_argument('--debug', action='store_true',
                         help='Enable debug mode with additional output')
     return parser.parse_args()

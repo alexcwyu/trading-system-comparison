@@ -6,18 +6,20 @@ build-backend = "setuptools.build_meta"
 name = "nautilus-trader-benchmark"
 version = "0.1.0"
 description = "NautilusTrader benchmark for trading system comparison"
-requires-python = ">=3.9"
+requires-python = ">=3.14,<3.15"
 dependencies = [
-    "nautilus_trader==1.217.0",
+    "nautilus_trader",
     "pandas>=1.3.0",
     "numpy>=1.20.0",
     "matplotlib>=3.4.0",
     "psutil",  # For CPU/memory monitoring
 ]
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = [
-    "pytest>=6.0.0",
-    "black>=21.5b2",
-    "isort>=5.9.1",
-] 
+    "pytest",
+    "black",
+    "isort",
+]
+[tool.uv]
+package = false

@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "vectorbt-benchmark"
 version = "0.1.0"
 description = "VectorBT benchmark for trading system comparison"
-requires-python = ">=3.9"
+requires-python = ">=3.15,<3.16"
 dependencies = [
     "vectorbt>=0.24.0",
     "pandas>=1.3.0",
@@ -16,11 +16,11 @@ dependencies = [
     "scipy>=1.7.0",
 ]
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = [
-    "pytest>=6.0.0",
-    "black>=21.5b2",
-    "isort>=5.9.1",
+    "pytest",
+    "black",
+    "isort",
 ]
 
 [tool.black]
@@ -29,4 +29,6 @@ target-version = ["py39"]
 
 [tool.isort]
 profile = "black"
-line_length = 100 
+line_length = 100
+[tool.uv]
+package = false

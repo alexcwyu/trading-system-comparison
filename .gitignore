@@ -72,3 +72,6 @@ results/
 # Backtrader specific
 *.pkl
 *.pickle
+
+# Local maintenance build environments and artifacts
+*.pyc

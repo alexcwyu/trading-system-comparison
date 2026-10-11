@@ -4,7 +4,7 @@ import asyncio
 import time
 import pandas as pd
 from decimal import Decimal
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 import basana as bs
@@ -179,16 +179,17 @@ async def run_backtest(data_path, start_date, end_date):
         
         # Create a bar event
         bar = bs.core.bar.Bar(
-            datetime=timestamp,
+            begin=timestamp,
             pair=pair,
             open=open_price,
             high=high_price,
             low=low_price,
             close=close_price,
-            volume=volume
+            volume=volume,
+            duration=timedelta(minutes=1),
         )
         
-        bar_event = bs.core.bar.BarEvent(when=timestamp, bar=bar)
+        bar_event = bs.core.bar.BarEvent(when=timestamp + timedelta(minutes=1), bar=bar)
         bar_source.push(bar_event)
     
     # Run the backtest
