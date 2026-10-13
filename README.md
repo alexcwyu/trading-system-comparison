@@ -23,7 +23,6 @@ This documentation provides comprehensive information about the various trading 
 | [OctoBot](./docs/octobot/README.md) | [GitHub](https://github.com/Drakkar-Software/OctoBot) | [Docs](https://www.octobot.cloud/en/guides/octobot) | ![OctoBot Stats](https://github-readme-stats.vercel.app/api/pin/?username=Drakkar-Software&repo=OctoBot) | Python | Event-driven | Modular, tentacle-based, multi-exchange | Cryptocurrency trading, strategy development | Crypto | Multiple crypto exchanges | Yes/Yes | Market, Limit, Stop | Yes | pandas, asyncio, websockets |
 | [LiuAlgoTrader](./docs/liualgotrader/README.md) | [GitHub](https://github.com/amor71/LiuAlgoTrader) | [Docs](https://liualgotrader.readthedocs.io/en/latest/index.html) | ![LiuAlgoTrader Stats](https://github-readme-stats.vercel.app/api/pin/?username=amor71&repo=LiuAlgoTrader) | Python | Event-driven | Producer-consumer, multi-process, ML-ready | Scalable algorithmic trading, intraday strategies | US Equities, Crypto | Alpaca, Gemini, custom | Yes/Yes | Market, Limit, Stop, SL, TP | Limited | pandas, asyncio, PostgreSQL |
 | [FinmarketPy](./docs/finmarketpy/README.md) | [GitHub](https://github.com/cuemacro/finmarketpy) | [Docs](https://www.cuemacro.com/) | ![FinmarketPy Stats](https://github-readme-stats.vercel.app/api/pin/?username=cuemacro&repo=finmarketpy) | Python | Event-driven | FX analytics, curve analysis, event studies | FX trading, market analysis, research | FX, Fixed Income, Equities, Commodities | Simulated | Limited/Yes | Market | Limited | pandas, numpy, matplotlib, scipy |
-| [Blankly](./docs/blankly/README.md) | [GitHub](https://github.com/blankly-finance/blankly) | [Docs](https://docs.blankly.finance/) | ![Blankly Stats](https://github-readme-stats.vercel.app/api/pin/?username=blankly-finance&repo=blankly) | Python | Event-driven | Easy exchange integration, unified API, cloud deployment | Rapid development, deployable strategies, crypto trading | Crypto, US Equities, FX | Coinbase, Binance, Alpaca, OANDA, FTX, KuCoin | Yes/Yes | Market, Limit, Stop loss, Take profit | Limited | pandas, numpy, websockets |
 | [Basana](./docs/basana/README.md) | [GitHub](https://github.com/gbeced/basana) | [Docs](https://basana.readthedocs.io/en/latest/) | ![Basana Stats](https://github-readme-stats.vercel.app/api/pin/?username=gbeced&repo=basana) | Python | Event-driven | Async, modular, extensible, clean API | Cryptocurrency trading, strategy development | Crypto | Binance, Bitstamp | Yes/Yes | Market, Limit | Yes | asyncio, websockets, pandas |
 | [QF-Lib](./docs/qf-lib/README.md) | [GitHub](https://github.com/quarkfin/qf-lib) | [Docs](https://qf-lib.readthedocs.io/en/latest/) | ![QF-Lib Stats](https://github-readme-stats.vercel.app/api/pin/?username=quarkfin&repo=qf-lib) | Python | Event-driven | Advanced financial analysis, PDF reports, look-ahead bias prevention | Academic research, strategy development, portfolio optimization | Equities, Fixed Income, Alternatives | Interactive Brokers | Yes/Yes | Market, Limit, Stop, SL, TP | Limited | pandas, numpy, scipy, WeasyPrint |
 | [pysystemtrade](./docs/pysystemtrade/README.md) | [GitHub](https://github.com/robcarver17/pysystemtrade) | - | ![pysystemtrade Stats](https://github-readme-stats.vercel.app/api/pin/?username=robcarver17&repo=pysystemtrade) | Python | Event-driven | Portfolio construction, multiple trading rules, risk management | Futures trading, portfolio optimization, systematic trading | Futures, ETFs, any tradeable instrument | Interactive Brokers | Yes/Yes | Market, Limit | Limited | pandas, numpy, matplotlib, ib_insync |
@@ -46,7 +45,6 @@ graph TD
         Jesse[Jesse]:::python
         LiuAlgoTrader[LiuAlgoTrader]:::python
         FinmarketPy[FinmarketPy]:::python
-        Blankly[Blankly]:::python
         Basana[Basana]:::python
         QFLib[QF-Lib]:::python
         LEAN[LEAN]:::csharp
@@ -111,10 +109,6 @@ graph TD
     FinmarketPy --> Education
     FinmarketPy --> Institutional
     
-    Blankly --> Prototyping
-    Blankly --> Crypto
-    Blankly --> Cloud
-    Blankly --> Education
 
     Basana --> Crypto
     Basana --> Education
@@ -146,7 +140,7 @@ graph TD
     classDef usecase fill:#fdd,stroke:#d33,stroke-width:1px;
 
     class Barter rust;
-    class Backtrader,VeighNa,TensorTrade,VectorBT,Hummingbot,BacktestingPy,Jesse,LiuAlgoTrader,FinmarketPy,Blankly,QFLib,pysystemtrade python;
+    class Backtrader,VeighNa,TensorTrade,VectorBT,Hummingbot,BacktestingPy,Jesse,LiuAlgoTrader,FinmarketPy,QFLib,pysystemtrade python;
     class NautilusTrader hybrid;
     class LEAN csharp;
     class HFT,Education,Institutional,GUI,ML,Optimization,Crypto,DEX,Prototyping,FX,Cloud,Academic,Production,Portfolio,Futures usecase;
@@ -354,7 +348,6 @@ flowchart TD
     classDef octobot fill:#daa,stroke:#a33,stroke-width:1px;
     classDef liualgotrader fill:#cfc,stroke:#3c3,stroke-width:1px;
     classDef finmarketpy fill:#ddf,stroke:#33d,stroke-width:1px;
-    classDef blankly fill:#cdf,stroke:#3ad,stroke-width:1px;
     classDef basana fill:#bfd,stroke:#3ad,stroke-width:1px;
     classDef qflib fill:#fdd,stroke:#d33,stroke-width:1px;
 
@@ -373,7 +366,6 @@ flowchart TD
     class OCCore,OCTentacles,OCChannels,OCEvaluators,OCTradingModes octobot;
     class LATProducer,LATConsumers,LATScanners,LATStrategies,LATDatabase,LATTrader liualgotrader;
     class FMPTradingModel,FMPBacktest,FMPCurve,FMPEconomics,FMPAnalysis finmarketpy;
-    class BLStrategy,BLExchange,BLInterface,BLState,BLWebsocket,BLPaperTrade blankly;
     class BSDispatcher,BSEvents,BSExchange,BSBacktesting,BSExternal basana;
     class QFEventManager,QFScheduler,QFDataHandler,QFStrategy,QFAlphaModel,QFPositionSizer,QFExecutionHandler,QFPortfolio,QFBacktestMonitor qflib;
 ```
@@ -406,7 +398,6 @@ flowchart TD
 
 - **FinmarketPy**: Specialized in financial time series and market data processing, particularly for FX markets. Features extensive curve analysis for financial instruments including FX options, forwards, and vol surfaces. Employs pandas DataFrames as the primary data structure with strong support for time-indexed data. Includes tools for event studies, seasonality analysis, and technical indicator calculation.
 
-- **Blankly**: Built with a focus on simplicity, flexibility, and usability. Uses a state-based event-driven architecture with a unified interface across exchanges. Features an abstracted exchange connectivity layer that allows the same strategy to run on multiple exchanges or in backtesting without code changes. Emphasizes cloud deployment capabilities with built-in metrics tracking, dashboards, and monitoring.
 
 - **Basana**: Efficient async data handling with support for live and historical data. Uses lightweight data structures optimized for event-based processing. Features built-in CSV data export/import with standardized formats. Supports real-time WebSocket streams for market data with automatic reconnection and error handling.
 
@@ -433,7 +424,6 @@ xychart-beta
     bar [9, 0, 10, 9, 0] "HFTBacktest"
     bar [7, 7, 8, 7, 6] "LiuAlgoTrader"
     bar [7, 5, 8, 7, 6] "FinmarketPy"
-    bar [7, 7, 8, 7, 7] "Blankly"
     bar [7, 7, 8, 7, 6] "Basana"
     bar [7, 7, 8, 7, 7] "QF-Lib"
 ```
@@ -464,7 +454,6 @@ xychart-beta
 
 - **FinmarketPy**: Specialized in financial time series and market data processing, particularly for FX markets. Features extensive curve analysis for financial instruments including FX options, forwards, and vol surfaces. Employs pandas DataFrames as the primary data structure with strong support for time-indexed data. Includes tools for event studies, seasonality analysis, and technical indicator calculation.
 
-- **Blankly**: Provides a unified data interface across exchanges with support for real-time and historical data. Uses pandas DataFrames for most data operations with NumPy for accelerated calculations. Features automatic data caching and throttling to respect exchange rate limits. Includes built-in indicator library and utilities for data preprocessing. Supports both direct exchange data and local file-based data for backtesting.
 
 - **Basana**: Efficient async data handling with support for live and historical data. Uses lightweight data structures optimized for event-based processing. Features built-in CSV data export/import with standardized formats. Supports real-time WebSocket streams for market data with automatic reconnection and error handling.
 
@@ -492,7 +481,6 @@ xychart-beta
 
 - **FinmarketPy**: Specialized in financial time series and market data processing, particularly for FX markets. Features extensive curve analysis for financial instruments including FX options, forwards, and vol surfaces. Employs pandas DataFrames as the primary data structure with strong support for time-indexed data. Includes tools for event studies, seasonality analysis, and technical indicator calculation.
 
-- **Blankly**: Provides a unified data interface across exchanges with support for real-time and historical data. Uses pandas DataFrames for most data operations with NumPy for accelerated calculations. Features automatic data caching and throttling to respect exchange rate limits. Includes built-in indicator library and utilities for data preprocessing. Supports both direct exchange data and local file-based data for backtesting.
 
 - **Basana**: Efficient async data handling with support for live and historical data. Uses lightweight data structures optimized for event-based processing. Features built-in CSV data export/import with standardized formats. Supports real-time WebSocket streams for market data with automatic reconnection and error handling.
 
@@ -556,14 +544,6 @@ xychart-beta
   4. Run backtest with construct_strategy()
   5. Analyze results with built-in analysis tools
   6. Visualize performance with integrated plotting functions
-
-- **Blankly**:
-  1. Create a Strategy class and define event handlers (price_event, order_event)
-  2. Initialize strategy parameters and indicators in init() method
-  3. Implement trading logic in price_event() or other event handlers
-  4. Configure exchange settings in settings.json and keys.json
-  5. Run either backtest() or start() on the strategy
-  6. Analyze results with built-in metrics or export data
 
 - **Basana**:
   1. Create async event handlers for different event types
@@ -678,7 +658,7 @@ Simplicity?}
     classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px;
     classDef system fill:#bbf,stroke:#33f,stroke-width:2px;
     
-    class NautilusTrader,Barter,VectorBT,Hummingbot,BacktestingPy,Jesse,Backtrader,VeighNa,TensorTrade,LiuAlgoTrader,FinmarketPy,Blankly,LEAN system;
+    class NautilusTrader,Barter,VectorBT,Hummingbot,BacktestingPy,Jesse,Backtrader,VeighNa,TensorTrade,LiuAlgoTrader,FinmarketPy,LEAN system;
 ```
 
 ### When to use Barter
@@ -780,14 +760,6 @@ Simplicity?}
 - When working in institutional FX trading and research
 - For economic and technical analysis with visualization
 
-### When to use Blankly
-- When you want a unified API across multiple exchanges
-- For rapid development and prototyping of trading strategies
-- When you need both backtesting and live trading in the same codebase
-- For deploying strategies to cloud infrastructure
-- When you need a balance of simplicity, flexibility, and performance
-- For cryptocurrency trading with support for multiple exchanges
-
 ### When to use Basana
 - When you need efficient async data handling with support for live and historical data
 - For cryptocurrency trading strategies
@@ -846,3 +818,7 @@ Trading systems can be classified on a continuum based on their architecture and
 4. **Actor-Based** (Basana): Systems that use independent actors communicating via messages
 5. **Object-Oriented Simulation** (Backtrader): Systems that model market entities as interacting objects
 
+
+## Benchmark data
+
+Sample datasets are no longer bundled in `data/`. Supply your own CSV with `--data /path/to/market.csv` when running an example. The extraction helper in [scripts](scripts/README.md) filters an existing input file; it does not download market data.

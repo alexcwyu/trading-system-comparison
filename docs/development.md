@@ -1,5 +1,11 @@
 # system-comparison: development workflow and layout
 
+<!-- current-documentation-provenance -->
+Documentation reviewed: 2026-10-13 / Git source base: `d42438792ef986e6de005b685d75396225ade132` / [Current architecture and feature guide](ayu-develop.md).
+Historical execution commands/results below retain their original dates and scope; this metadata update is not a new application test run.
+<!-- /current-documentation-provenance -->
+
+
 Use branch `feature/ayu_develop`. The actual upstream default branch and all fetched branch/tag identities are recorded in the maintenance sync evidence. Merge existing work; do not reset divergent branches or replace conflicting tags.
 
 ## Source synchronization
@@ -34,3 +40,5 @@ Libraries and services retain their existing importable source packages and buil
 ## Verification and documentation
 
 Use the commands and results in [validation.md](validation.md). Markdown is the editable source of the guide; HTML embeds rendered SVG diagrams for offline browsing. Keep actual source links valid after moving modules. Preserve existing cases/assertions while correcting incompatible APIs, genuine resource leaks or invalid fixtures. No additional test cases were requested or added.
+
+User-requested data cleanup: the bundled `data/BTCUSDT_202401.csv` was removed. Historical smoke results below used that former sample; rerunning benchmarks requires a user-supplied CSV. Example code and environment files are retained.

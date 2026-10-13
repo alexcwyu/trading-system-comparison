@@ -1,5 +1,11 @@
 # system-comparison: validation results
 
+<!-- current-documentation-provenance -->
+Documentation reviewed: 2026-10-13 / Git source base: `d42438792ef986e6de005b685d75396225ade132` / [Current architecture and feature guide](ayu-develop.md).
+Historical execution commands/results below retain their original dates and scope; this metadata update is not a new application test run.
+<!-- /current-documentation-provenance -->
+
+
 All six owned Python source files compile and all five existing framework benchmark scripts execute on the supplied common historical interval.
 
 ## Verified scope
@@ -53,3 +59,5 @@ Exploratory failures remain visible. Use later successful runs only for the scop
 [Executed command records](maintenance/index.html) · [Machine-readable verification](maintenance/verification.json) · [Engineering guide](ayu-develop.md) · [Development workflow](development.md)
 
 Full original logs are retained in the workspace maintenance evidence; portable records contain their hashes, exact execution metadata and available outcome lines.
+
+User-requested data cleanup: the bundled `data/BTCUSDT_202401.csv` was removed. Historical smoke results below used that former sample; rerunning benchmarks requires a user-supplied CSV. Example code and environment files are retained.
